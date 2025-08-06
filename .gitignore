@@ -1,3 +1,4 @@
 node_modules/
 tests/
 src/config/config.json
+.env/
