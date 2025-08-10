@@ -1,6 +1,7 @@
 const res = require("express/lib/response");
 const { City } = require("../models/index");
 const { response } = require("express");
+const { where } = require("sequelize");
 
 class CityRepository {
     async createCity({ name }) {
@@ -17,7 +18,9 @@ class CityRepository {
     async deleteCity(cityId) {
         try {
             const response = await City.destroy({
-                id: cityId
+                where: {
+                    id: cityId
+                }
             });
             return response;
         } catch (error) {
