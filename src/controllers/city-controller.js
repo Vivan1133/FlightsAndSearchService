@@ -31,7 +31,7 @@ const update = async (req, res) => {
             error: {},
             data: response,
             success: true
-        })
+        }) 
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -83,9 +83,30 @@ const read = async (req, res) => {
     }
 }
 
+const readAll = async (req, res) => {
+    try {
+        const response = await cityService.getAllCity();
+        return res.status(201).json({
+            message: "successfully fetched all data",
+            error: {},
+            data: response,
+            success: true
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "can not read the data",
+            error: error,
+            data: {},
+            success: false
+        })
+    }
+}
+
 module.exports = {
     create, 
     read,
     update,
-    destroy
+    destroy,
+    readAll
 }   

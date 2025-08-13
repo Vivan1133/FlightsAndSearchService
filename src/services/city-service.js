@@ -36,11 +36,21 @@ class CityService {
     }
     async getCity(id) {
         try {
-            const reponse = await this.cityRespository.getCity(id);
+            const response = await this.cityRespository.getCity(id);
             return response;
         } catch (error) {
             console.log("something went wrong in city service");
             throw {error};
+        }
+    }
+
+    async getAllCity() {
+        try {
+            const response = await this.cityRespository.getAllCity();
+            return response;
+        } catch (error) {
+            console.log("something went wrong in the repository section");
+            throw { error };
         }
     }
 }

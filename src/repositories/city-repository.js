@@ -40,13 +40,23 @@ class CityRepository {
             console.log("something went wrong in repository layer");
             throw { error };
         }
-    }
+    } 
     async getCity(id) {
         try {
-            const reponse = await City.findByPk(id);
+            const response = await City.findByPk(id);
             return response;
         } catch (error) {
             console.log("something went wrong in repository layer");
+            throw { error };
+        }
+    }
+
+    async getAllCity() {
+        try {
+            const response = await City.findAll();
+            return response;
+        } catch (error) {
+            console.log("something went wrong in the repository section");
             throw { error };
         }
     }
