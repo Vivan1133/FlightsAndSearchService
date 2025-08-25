@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { CityController, AirportController } = require("../../controllers/index");
+const { CityController, AirportController, FlightController } = require("../../controllers/index");
+
+// api/v1/flights
+router.post("/flights", FlightController.create);
+
 
 // api/v1/airport
 router.post("/airport", AirportController.create);
