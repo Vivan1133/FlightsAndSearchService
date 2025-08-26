@@ -3,8 +3,8 @@ const CrudService = require("./crud-service");
 
 class CityService extends CrudService{
     constructor() {
-        this.cityRespository = new CityRepository();
-        super(this.cityRespository);
+        const cityRespository = new CityRepository();
+        super(cityRespository);
     }
 }
 

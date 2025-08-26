@@ -4,17 +4,18 @@ const CrudService = require("./crud-service");
 
 class FlightService extends CrudService{
     constructor() {
+        const flightRepository = new FlightRepository();
+        super(flightRepository);
         this.airplaneRepository = new AirplaneRepository();
-        this.flightRepository = new FlightRepository();
-        super(this.flightRepository);
+        this.flightRepository = flightRepository;
     }
     async create(data) {
         try {
             if(!compareDateTime(data.arrivalTime, data.departureTime)) {
                 throw { error: "arrival time can not be greater than departure time"};
             }
-            const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
-            const flight = await this.flightRepository.createFlight({
+            const airplane = await this.airplaneRepository.get(data.airplaneId);
+            const flight = await this.flightRepository.create({
                 ...data, totalSeats: airplane.capacity 
             });
             return flight;
