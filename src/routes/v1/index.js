@@ -4,6 +4,7 @@ const { CityController, AirportController, FlightController } = require("../../c
 
 // api/v1/flights
 router.post("/flights", FlightController.create);
+router.get("/flights", FlightController.readAll);
 
 
 // api/v1/airport
