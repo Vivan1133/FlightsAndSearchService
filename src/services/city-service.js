@@ -1,57 +1,10 @@
-const res = require("express/lib/response");
 const { CityRepository } = require("../repositories/index");
-const { response } = require("express");
+const CrudService = require("./crud-service");
 
-class CityService {
+class CityService extends CrudService{
     constructor() {
         this.cityRespository = new CityRepository();
-    }
-
-    async createCity(data) {
-        try {
-            const response = await this.cityRespository.createCity(data);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in city service");
-            throw {error};
-        }
-    }
-    async deleteCity(cityId) {
-        try {
-            const response = await this.cityRespository.deleteCity(cityId);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in city service");
-            throw {error};
-        }
-    }
-    async updateCity(id, data) {
-        try {
-            const response = await this.cityRespository.updateCity(id, data);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in city service");
-            throw {error};
-        }
-    }
-    async getCity(id) {
-        try {
-            const response = await this.cityRespository.getCity(id);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in city service");
-            throw {error};
-        }
-    }
-
-    async getAllCity(filter) {
-        try {
-            const response = await this.cityRespository.getAllCity({ name: filter.name });
-            return response;
-        } catch (error) {
-            console.log("something went wrong in the repository section");
-            throw { error };
-        }
+        super(this.cityRespository);
     }
 }
 

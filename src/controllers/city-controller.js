@@ -5,7 +5,7 @@ const cityService = new CityService();
 
 const create = async (req, res) => {
     try {
-        const response = await cityService.createCity(req.body);
+        const response = await cityService.create(req.body);
         return res.status(201).json({
             message: "successfully created city",
             error: {},
@@ -25,7 +25,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const response = await cityService.updateCity(req.params.id, req.body);
+        const response = await cityService.update(req.params.id, req.body);
         return res.status(201).json({
             message: "successfully updated the city",
             error: {},
@@ -45,7 +45,7 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
     try {
-        const response = await cityService.deleteCity(req.params.id);
+        const response = await cityService.destroy(req.params.id);
         return res.status(201).json({
             message: "successfully deleted the city",
             error: {},
@@ -65,7 +65,7 @@ const destroy = async (req, res) => {
 
 const read = async (req, res) => {
     try {
-        const response = await cityService.getCity(req.params.id);
+        const response = await cityService.get(req.params.id);
         return res.status(201).json({
             message: "successfully retrieved the data",
             error: {},
@@ -85,7 +85,7 @@ const read = async (req, res) => {
 
 const readAll = async (req, res) => {
     try {
-        const response = await cityService.getAllCity(req.query);
+        const response = await cityService.getAll(req.query);
         return res.status(201).json({
             message: "successfully fetched all data",
             error: {},

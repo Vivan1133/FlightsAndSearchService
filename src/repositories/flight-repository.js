@@ -1,7 +1,12 @@
 const { Flight } = require("../models/index");
 const { Op } = require("sequelize");
+const CrudRepository = require("./crud-repository");
 
-class FlightRepository {
+class FlightRepository extends CrudRepository{
+
+    constructor() {
+        super(Flight);
+    }
 
     #createFilter(data) {
         let filter = {};
@@ -31,27 +36,7 @@ class FlightRepository {
         return filter;
     }
 
-    async createFlight(data) {
-        try {
-            const response = await Flight.create(data);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in the repository section");
-            throw { error };
-        }
-    }
-
-    async getFlight(flightId) {
-        try {
-            const response = await Flight.findByPk(flightId);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in the repository layer");
-            throw { error };
-        }
-    }
-
-    async getAllFlight(filter) {
+    async getAll(filter) {
         try {
             const filterObject = this.#createFilter(filter);
             const response = await Flight.findAll({
@@ -64,36 +49,9 @@ class FlightRepository {
         }
     }
 
-    async updateFlight(data, flightId) {
-        try {
-            const response = await Flight.update(data, {
-                where: {
-                    flightId
-                }
-            })
-            return response;
-        } catch (error) {
-            console.log("something went wrong in the repository layer");
-            return { error };
-        }
-    }
-
-    async destroyFlight(flightId) {
-        try {
-            const response = await Flight.destory({
-                where: {
-                    flightId
-                }
-            })
-        } catch (error) {
-            console.log("something went wrong in the repository layer");
-            return { error };
-        }
-    }
 }
 
 module.exports = FlightRepository;
-
 
 
 /**

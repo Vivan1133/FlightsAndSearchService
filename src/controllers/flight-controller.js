@@ -4,7 +4,7 @@ const flightService = new FlightService();
 
 const create = async (req, res) => {
     try {
-        const response = await flightService.createFlight(req.body);
+        const response = await flightService.create(req.body);
         return res.status(201).json({
             message: "successfully created a flight",
             error: {},
@@ -24,7 +24,7 @@ const create = async (req, res) => {
 
 const read = async (req, res) => {
     try {
-        const response = await flightService.getFlight(req.query);
+        const response = await flightService.get(req.query);
         return res.status(201).json({
             message: "successfully fetched a flight",
             error: {},
@@ -44,7 +44,7 @@ const read = async (req, res) => {
 
 const readAll = async (req, res) => {
     try {
-        const response = await flightService.getAllFlight(req.query);
+        const response = await flightService.getAll(req.query);
         return res.status(201).json({
             message: "successfully fetched all flight",
             error: {},

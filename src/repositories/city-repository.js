@@ -1,58 +1,14 @@
-const res = require("express/lib/response");
 const { City } = require("../models/index");
-const { response } = require("express");
-const { where } = require("sequelize");
 const { Op } = require("sequelize");
+const CrudRepository = require("./crud-repository");
 
-class CityRepository {
-    async createCity({ name }) {
-        try {
-            const response = await City.create({
-                name
-            });
-            return response;
-        } catch (error) {
-            console.log("something went wrong in repository layer");
-            throw { error };
-        }
-    }
-    async deleteCity(cityId) {
-        try {
-            const response = await City.destroy({
-                where: {
-                    id: cityId
-                }
-            });
-            return response;
-        } catch (error) {
-            console.log("something went wrong in repository layer");
-            throw { error };
-        }
-    }
-    async updateCity(id, data) {
-        try {
-            const response = await City.update(data, {
-            where: {
-                id
-            }
-            });
-            return response;
-        } catch (error) {
-            console.log("something went wrong in repository layer");
-            throw { error };
-        }
-    } 
-    async getCity(id) {
-        try {
-            const response = await City.findByPk(id);
-            return response;
-        } catch (error) {
-            console.log("something went wrong in repository layer");
-            throw { error };
-        }
+class CityRepository extends CrudRepository {
+
+    constructor() {
+        super(City);
     }
 
-    async getAllCity(filter) {
+    async getAll(filter) {
         try {
             if(filter.name) {
                 const response = await City.findAll({
