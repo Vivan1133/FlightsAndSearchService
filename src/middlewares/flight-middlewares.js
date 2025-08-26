@@ -1,3 +1,5 @@
+const { ClientErrorCodes } = require("../utils/error-codes");
+
 function validateCreateFlight(req, res, next) {
     if(
         !req.body.flightNumber ||
@@ -8,7 +10,7 @@ function validateCreateFlight(req, res, next) {
         !req.body.arrivalTime ||
         !req.body.price
     ) {
-        return res.status(400).json({
+        return res.status(ClientErrorCodes.BAD_REQUEST).json({
             data: {},
             message: "flight create validation failed at middleware",
             error: "missing field in the req body",
